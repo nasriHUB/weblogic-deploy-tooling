@@ -57,6 +57,7 @@ ENV DOMAIN_NAME="${DOMAIN_NAME:-base_domain}" \
 COPY container-scripts/* /u01/oracle/
 COPY weblogic-deploy.zip /u01
 COPY ${WDT_MODEL} ${ARCHIVE_FILE} /u01/
+COPY model_filters.json nodeManagersFilter.py /u01/
 
 # this file contains credentials.
 # be sure to build with --force-rm to eliminate this container layer
@@ -72,6 +73,7 @@ RUN chmod +xw /u01/oracle/*.sh && \
     chown -R oracle:oracle $PRE_DOMAIN_HOME && \
     cd /u01 && \
     $JAVA_HOME/bin/jar xf /u01/weblogic-deploy.zip && \
+    cp /u01/model_filters.json /u01/weblogic-deploy/lib && \
     chmod +xw /u01/weblogic-deploy/bin/*.sh && \
     chmod -R +xw /u01/weblogic-deploy/lib/python && \
     if [ -n "$WDT_MODEL" ]; then MODEL_OPT="-model_file /u01/$WDT_MODEL"; fi && \

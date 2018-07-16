@@ -1,0 +1,5 @@
+{
+  "create": [
+    { "name": "removeNodeManagers", "path": "/u01/nodeManagersFilter.py" }
+  ]
+}

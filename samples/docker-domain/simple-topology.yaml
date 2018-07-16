@@ -17,11 +17,9 @@ topology:
                 MaxDynamicClusterSize: 8
     Server:
         AdminServer:
-            Machine: machine1
             ListenPort: '@@PROP:ADMIN_PORT@@'
     ServerTemplate:
         template1:
-            Machine: machine1
             ListenPort: 9001
     Machine:
         machine1:
